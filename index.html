@@ -43,9 +43,18 @@
         }
 
         body {
-            padding-left: 50px;
-            padding-right: 50px;
+            <!-- padding-left: 50px; -->
+            <!-- padding-right: 50px; -->
+            display: flex;
+            flex-flow: column;
+            
         }
+        main {
+            width: min(90%, 700px);
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
 
         h1 {
             font-weight: 900;
@@ -55,8 +64,8 @@
         header {
             display: flex;
             flex-flow: column;
-            justify-content: start;
-            align-items: start;
+            justify-content: center;
+            align-items: center;
             text-align: center;
         }
 
@@ -68,11 +77,17 @@
             align-items: start;
             flex-flow: column;
         }
+        iframe{
+            margin-left: auto;
+            margin-right: auto;
+        }
 
         .discord-btn {
             background-color: #7289DA;
             margin-top: 5px;
             display: flex;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .discord-svg {
@@ -122,12 +137,13 @@
     </div>
 
     <h2>What can CARL do?</h2>
-    
+    <!-- <div style="display: flex"> -->
     <iframe width="560" height="315" src="https://www.youtube.com/embed/zqoi2DAxxJw"
             title="YouTube video player"
             frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowfullscreen></iframe>
+            <!-- </div> -->
             
     <p>CARL has a wide range of features that can be useful in different contexts. Here are some of the main ways
         that CARL can be used:</p>
