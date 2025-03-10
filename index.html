@@ -3,463 +3,193 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>CARL: Analysis tool for Rocket League</title>
+    <title>CARL2: Your Ultimate Rocket League Analysis & Coaching Tool</title>
     <meta name="author" content="LNDRLNDRLNDR">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description"
-        content="CARL is a live Rocket League analysis tool that provides advanced stats, minimaps, heatmaps, goalmaps, real-time data, and a drawing tool.">
+        content="CARL2 is the ultimate free Rocket League tool for replay analysis, live match tracking, and coaching. Process replays, dive into stats, and master your gameplay with heatmaps, boost tracking, and more.">
     <meta name="keywords"
-        content="Rocket League, analysis tool, live games, replays, minimaps, heatmaps, goalmaps, real-time data, advanced stats, drawing tool">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+        content="Rocket League, replay analysis, coaching tool, live analysis, game stats, heatmaps, Rocketleague, player performance, boost management, minimaps, series analysis, player positioning">   
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="shortcut icon" type="image/x-icon" href="icon.ico">
     <link rel="apple-touch-icon" href="icon.ico" />
+    <link rel="stylesheet" href="styles.css">
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-7GPS2BDRQ8"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-
+        function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
         gtag('config', 'G-7GPS2BDRQ8');
     </script>
-
-    <style>
-        html,
-        body {
-            height: 100%;
-            width: 100%;
-            font-family: 'Montserrat', sans-serif;
-            color: #041e49;
-            margin: 0;
-            padding: 0;
-            background: transparent;
-        }
-
-        html {
-            background: #f3f6fc;
-            margin: 0;
-        }
-
-        main {
-            width: min(90%, 700px);
-            margin-left: auto;
-            margin-right: auto;
-            background-color: #ffffff;
-            border: 2px solid transparent;
-            border-radius: 24px;
-            padding: 20px;
-            margin-top: 25px;
-            margin-bottom: 25px;
-
-            color: #041e49;
-            font-size: 1rem;
-            font-weight: 400;
-        }
-
-        #scroll-to-top {
-            position: fixed;
-            bottom: 1rem;
-            right: 1rem;
-            opacity: 0;
-            transition: opacity 0.3s ease-in-out;
-        }
-
-        #scroll-to-top.show {
-            opacity: 1;
-        }
-
-        h1 {
-            font-weight: 900;
-            font-size: 2.25rem;
-
-            margin-bottom: 2px;
-            margin-top: 0;
-            text-align: center;
-        }
-
-        h2 {
-            font-size: 1.75rem;
-            font-weight: 700;
-            margin-top: 10px;
-
-            margin-bottom: 2px;
-        }
-
-        h3 {
-            font-size: 1.5rem;
-            font-weight: 700;
-
-            margin-bottom: 2px;
-        }
-
-        h4 {
-            text-align: center;
-            font-size: 1.2rem;
-            font-weight: 500;
-        }
-
-        section {
-            margin-left: auto;
-            margin-right: auto;
-            object-fit: scale-down;
-            width: 100%;
-            max-width: 720px;
-            padding-top: 15px;
-        }
-
-        img {
-            margin-left: auto;
-            margin-right: auto;
-            object-fit: scale-down;
-            width: 100%;
-            max-width: 720px;
-        }
-
-        .portfolio_space {
-            display: flex;
-            justify-content: center;
-            flex-flow: column wrap;
-        }
-
-
-        header {
-            width: 100%;
-            background-color: #ffffff;
-            color: #041e49;
-            font-size: 1.5rem;
-            border-bottom: 1px solid #041e49;
-        }
-
-        header ul {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            row-gap: 25px;
-        }
-
-        header li {
-            padding-left: 20px;
-            padding-right: 20px;
-            height: 35px;
-        }
-
-        header {
-            display: flex;
-            flex-flow: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-        }
-
-        header li a {
-            display: block;
-            text-transform: uppercase;
-            color: #041e49 !important;
-            text-decoration: none !important;
-            font-size: 1.5rem;
-            font-weight: 300;
-            transition: all .25s;
-            border-bottom: 3px solid transparent;
-        }
-
-        header li.active a {
-            display: block;
-            text-transform: uppercase;
-            color: #6696fe !important;
-            text-decoration: none !important;
-            font-size: 1.5rem;
-            font-weight: 300;
-            transition: all .25s;
-            border-bottom: 3px solid #6696fe;
-        }
-
-        header li a:hover {
-            display: block;
-            text-transform: uppercase;
-            color: #f8982d !important;
-            text-decoration: none !important;
-            font-size: 1.5rem;
-            font-weight: 300;
-            transition: all .25s;
-            border-bottom: 3px solid #f8982d;
-        }
-
-        .subheader li a,
-        .subheader li.active a,
-        .subheader li a:hover {
-            font-size: 1.25rem;
-        }
-
-        .subheader li {
-            height: 32px;
-        }
-
-        .second_header {
-            width: min(90%, 700px);
-            position: relative;
-            left: 50%;
-            transform: translateX(-50%);
-
-            border-bottom: none;
-            border-bottom-left-radius: 24px;
-            border-bottom-right-radius: 24px;
-        }
-
-
-        .video_box {
-            display: flex;
-            align-items: center;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            margin-top: 15px;
-            margin-bottom: 35px;
-
-        }
-
-        .video_box iframe {
-            margin-left: auto;
-            margin-right: auto;
-            width: min(90%, 560px);
-            height: 315px;
-            border-radius: 12px;
-            box-shadow: 2px 2px 2px #1e1e1e70;
-            margin-bottom: 15px;
-        }
-
-        .discord-btn {
-            background-color: #7289DA;
-            margin-top: 0px;
-            display: flex;
-            margin-left: auto;
-            margin-right: auto;
-            box-shadow: 2px 2px 2px #1e1e1e;
-            width: fit-content;
-        }
-
-        .discord-btn:hover {
-            background-color: #f8982d !important;
-            margin-top: 0px;
-            display: flex;
-            margin-left: auto;
-            margin-right: auto;
-            box-shadow: 2px 2px 2px #1e1e1e;
-            width: fit-content;
-        }
-
-        .discord-svg {
-            margin-right: 15px;
-            width: 25px;
-            height: 25px;
-            margin-top: auto;
-            margin-bottom: auto;
-        }
-
-
-        section ol li {
-            list-style-type: circle;
-        }
-    </style>
 </head>
 
 <body>
     <header>
         <ul>
-            <li class="active" title="CARL: Analysis Tool for Rocket League">
+            <li class="active" title="CARL2: Advanced Analysis Tool for Rocket League">
                 <a href="https://lndrlndr.github.io/">CARL</a>
             </li>
             <li title="BARL: Broadcast Assistant for Rocket League">
                 <a href="https://lndrlndr.github.io/BARL-Overlay/">BARL</a>
             </li>
-
-
             <li title="Home"><a href="https://lndrlndr.github.io/lndrlndrlndr">
-                    <img style="height: 50px; width: 50px; border-radius: 50%; transform: translateY(-5px)"
-                        alt="LNDRLNDRLNDR" src="https://lndrlndr.github.io/lndrlndrlndr/icon.png" /> </a>
+                <img style="height: 50px; width: 50px; border-radius: 50%; transform: translateY(-5px)"
+                    alt="LNDRLNDRLNDR" src="https://lndrlndr.github.io/lndrlndrlndr/icon.png" /> </a>
             </li>
-
             <li title="Custom Overlays">
                 <a href="https://lndrlndr.github.io/portfolio/">OVERLAYS</a>
             </li>
-
             <li title="Check out my contact information">
                 <a href="https://lndrlndr.github.io/Contact/">CONTACT</a>
             </li>
         </ul>
     </header>
+
     <main>
-        <h1>CARL: Analysis tool for Rocket League</h1>
-        <div class="video_box">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/LcqXHaqwmqQ?autoplay=1"
-                title="YouTube video player" frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowfullscreen></iframe>
-            <a href="https://discord.gg/y4xwPpCyWn" target="_blank" class="waves-effect waves-light btn discord-btn"
-                rel="nofollow">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="discord-svg" viewBox="0 0 16 16">
-                    <path
-                        d="M13.545 2.907a13.227 13.227 0 0 0-3.257-1.011.05.05 0 0 0-.052.025c-.141.25-.297.577-.406.833a12.19 12.19 0 0 0-3.658 0 8.258 8.258 0 0 0-.412-.833.051.051 0 0 0-.052-.025c-1.125.194-2.22.534-3.257 1.011a.041.041 0 0 0-.021.018C.356 6.024-.213 9.047.066 12.032c.001.014.01.028.021.037a13.276 13.276 0 0 0 3.995 2.02.05.05 0 0 0 .056-.019c.308-.42.582-.863.818-1.329a.05.05 0 0 0-.01-.059.051.051 0 0 0-.018-.011 8.875 8.875 0 0 1-1.248-.595.05.05 0 0 1-.02-.066.051.051 0 0 1 .015-.019c.084-.063.168-.129.248-.195a.05.05 0 0 1 .051-.007c2.619 1.196 5.454 1.196 8.041 0a.052.052 0 0 1 .053.007c.08.066.164.132.248.195a.051.051 0 0 1-.004.085 8.254 8.254 0 0 1-1.249.594.05.05 0 0 0-.03.03.052.052 0 0 0 .003.041c.24.465.515.909.817 1.329a.05.05 0 0 0 .056.019 13.235 13.235 0 0 0 4.001-2.02.049.049 0 0 0 .021-.037c.334-3.451-.559-6.449-2.366-9.106a.034.034 0 0 0-.02-.019Zm-8.198 7.307c-.789 0-1.438-.724-1.438-1.612 0-.889.637-1.613 1.438-1.613.807 0 1.45.73 1.438 1.613 0 .888-.637 1.612-1.438 1.612Zm5.316 0c-.788 0-1.438-.724-1.438-1.612 0-.889.637-1.613 1.438-1.613.807 0 1.451.73 1.438 1.613 0 .888-.631 1.612-1.438 1.612Z" />
-                </svg>
-                <div>Join the Discord</div>
-            </a>
-        </div>
+        <h1>CARL2: Your Ultimate Rocket League Analysis & Coaching Tool</h1>
 
-        <h2>What is CARL?</h2>
-        <p>CARL (short for "Coaching Analysis tool for Rocket League") is a free Rocket League analysis tool designed to
-            help players understand the game in more depth. Whether you're a casual player, a competitive pro, a caster,
-            a coach, an observer,.. CARL can provide valuable insights into your gameplay that can help you improve your
-            skills.</p>
-        <p>With CARL, you can access advanced data and statistics that are not available within the game itself, such as
-            player heatmaps, goal-maps, boost usage charts, and more. By analyzing this data, you can identify areas of
-            your gameplay that need improvement and work on them to become a better player.</p>
+        <section>
+            <h2>Transform Your Rocket League Experience</h2>
+            <p>Welcome to CARL2, a game-changing companion for Rocket League players, coaches, and casters alike. This FREE tool empowers you to process replays, analyze single games or entire series, and track live matches with precision. Whether you’re grinding to climb the ranks, refining team strategies, or preparing expert commentary, CARL2 delivers <strong>actionable insights</strong> through advanced statistics and visualizations. It connects seamlessly to your Rocket League data, pulling everything from basic scores to intricate movement patterns, all presented in an intuitive interface. With CARL2, every moment of a match becomes an opportunity to understand where you excelled, where you faltered, and how to adjust—right within the app.</p>
+            <p>CARL2’s integration with Rocket League goes beyond surface-level stats. By syncing directly with your game data, it generates a variety of visualizations—think heatmaps showing your field positioning, boost pickup maps tracking resource management, and 3D path tracking that traces every player’s journey across the pitch. For instance, a heatmap might reveal you’re spending too much time in your defensive third, prompting a shift in playstyle. Boost pickup maps break down where you’re collecting or wasting boost, offering a clear path to improving efficiency. These tools cater to all users: players can pinpoint personal weaknesses, coaches can analyze team coordination, and casters can pull real-time stats to enrich their broadcasts. Watch the trailer below to see how CARL2 transforms raw data into a roadmap for success.</p>
+            <div class="video_box">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/EhuK2M9LV3k"
+                    title="CARL2 Trailer" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen></iframe>
+            </div>
+        </section>
 
-        <div style="display: flex; width: 100%; justify-content: center">
-            <img src="https://lndrlndr.github.io/CARL%20Analysis%20tool%20for%20Casters%20and%20Coaches.jpg"
-                alt="Analysis tool for Rocket League" title="CARL analysis" style="width: min(90%, 600px); margin-bottom: 35px;"
-                itemprop="image" />
-        </div>
+        <section>
+            <h2>Process Replays: Unlock the Secrets of Your Matches</h2>
+            <p>Every Rocket League replay holds a story waiting to be uncovered, and CARL2’s <strong>replay processing</strong> feature makes it happen in just <strong>10-30 seconds</strong>. Start by selecting a replay file from your Steam, Epic Games, or a custom folder—such as your downloads—and hit "Process Replay." CARL2 dives into your Rocket League data, extracting a wealth of <strong>player stats</strong> like shots, saves, boost usage, and positioning metrics, preparing them for deeper exploration. Once processed, your replay is ready to analyze immediately or save for later, accessible directly from the main menu.</p>
+            <p>The magic happens behind the scenes: CARL2 uses advanced algorithms to analyze every frame of your replay, breaking down complex actions—ball touches, aerials, demos, and more—into a structured dataset. This allows the tool to generate detailed statistics, such as your shot accuracy percentage, how often you’re in the offensive zone, or your boost efficiency compared to teammates. For example, you might discover you’re not collecting boost pads from the opponent’s half—data that’s invisible without CARL2. Coaches can use this feature to quickly assess team performance across multiple replays, spotting patterns like poor boost management or inconsistent kickoff plays. The speed of processing means you’re never bogged down waiting; you can jump straight into analysis and start improving.</p>
+            <div style="display: flex; width: 100%; justify-content: center">
+                <img src="img/CARL2_replay_processing.png" alt="CARL2 Replay Processing Screen" style="width: min(90%, 600px); margin-bottom: 35px;" />
+            </div>
+            <div class="button-group">
+                <a href="https://lndrlndr.github.io/CARL2_App/" target="_blank" class="waves-effect waves-light btn download-btn">
+                    <div>Download CARL2</div>
+                </a>
+                <a href="https://discord.gg/y4xwPpCyWn" target="_blank" class="waves-effect waves-light btn discord-btn" rel="nofollow">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="discord-svg" viewBox="0 0 16 16">
+                        <path d="M13.545 2.907a13.227 13.227 0 0 0-3.257-1.011.05.05 0 0 0-.052.025c-.141.25-.297.577-.406.833a12.19 12.19 0 0 0-3.658 0 8.258 8.258 0 0 0-.412-.833.051.051 0 0 0-.052-.025c-1.125.194-2.22.534-3.257 1.011a.041.041 0 0 0-.021.018C.356 6.024-.213 9.047.066 12.032c.001.014.01.028.021.037a13.276 13.276 0 0 0 3.995 2.02.05.05 0 0 0 .056-.019c.308-.42.582-.863.818-1.329a.05.05 0 0 0-.01-.059.051.051 0 0 0-.018-.011 8.875 8.875 0 0 1-1.248-.595.05.05 0 0 1-.02-.066.051.051 0 0 1 .015-.019c.084-.063.168-.129.248-.195a.05.05 0 0 1 .051-.007c2.619 1.196 5.454 1.196 8.041 0a.052.052 0 0 1 .053.007c.08.066.164.132.248.195a.051.051 0 0 1-.004.085 8.254 8.254 0 0 1-1.249.594.05.05 0 0 0-.03.03.052.052 0 0 0 .003.041c.24.465.515.909.817 1.329a.05.05 0 0 0 .056.019 13.235 13.235 0 0 0 4.001-2.02.049.049 0 0 0 .021-.037c.334-3.451-.559-6.449-2.366-9.106a.034.034 0 0 0-.02-.019Zm-8.198 7.307c-.789 0-1.438-.724-1.438-1.612 0-.889.637-1.613 1.438-1.613.807 0 1.45.73 1.438 1.613 0 .888-.637 1.612-1.438 1.612Zm5.316 0c-.788 0-1.438-.724-1.438-1.612 0-.889.637-1.613 1.438-1.613.807 0 1.451.73 1.438 1.613 0 .888-.631 1.612-1.438 1.612Z" />
+                    </svg>
+                    <div>Join the Discord</div>
+                </a>
+            </div>
+        </section>
 
-        <h2>What can CARL do?</h2>
-        <div class="video_box">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/zqoi2DAxxJw"
-                title="YouTube video player" frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowfullscreen></iframe>
-            <a href="https://discord.gg/y4xwPpCyWn" target="_blank" class="waves-effect waves-light btn discord-btn"
-                rel="nofollow">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="discord-svg" viewBox="0 0 16 16">
-                    <path
-                        d="M13.545 2.907a13.227 13.227 0 0 0-3.257-1.011.05.05 0 0 0-.052.025c-.141.25-.297.577-.406.833a12.19 12.19 0 0 0-3.658 0 8.258 8.258 0 0 0-.412-.833.051.051 0 0 0-.052-.025c-1.125.194-2.22.534-3.257 1.011a.041.041 0 0 0-.021.018C.356 6.024-.213 9.047.066 12.032c.001.014.01.028.021.037a13.276 13.276 0 0 0 3.995 2.02.05.05 0 0 0 .056-.019c.308-.42.582-.863.818-1.329a.05.05 0 0 0-.01-.059.051.051 0 0 0-.018-.011 8.875 8.875 0 0 1-1.248-.595.05.05 0 0 1-.02-.066.051.051 0 0 1 .015-.019c.084-.063.168-.129.248-.195a.05.05 0 0 1 .051-.007c2.619 1.196 5.454 1.196 8.041 0a.052.052 0 0 1 .053.007c.08.066.164.132.248.195a.051.051 0 0 1-.004.085 8.254 8.254 0 0 1-1.249.594.05.05 0 0 0-.03.03.052.052 0 0 0 .003.041c.24.465.515.909.817 1.329a.05.05 0 0 0 .056.019 13.235 13.235 0 0 0 4.001-2.02.049.049 0 0 0 .021-.037c.334-3.451-.559-6.449-2.366-9.106a.034.034 0 0 0-.02-.019Zm-8.198 7.307c-.789 0-1.438-.724-1.438-1.612 0-.889.637-1.613 1.438-1.613.807 0 1.45.73 1.438 1.613 0 .888-.637 1.612-1.438 1.612Zm5.316 0c-.788 0-1.438-.724-1.438-1.612 0-.889.637-1.613 1.438-1.613.807 0 1.451.73 1.438 1.613 0 .888-.631 1.612-1.438 1.612Z" />
-                </svg>
-                <div>Join the Discord</div>
-            </a>
-        </div>
+        <section>
+            <h2>Analyze Single Game: Dive Deep into Every Play</h2>
+            <p>CARL2’s <strong>Analyze Single Game</strong> feature transforms any processed replay into a detailed breakdown of your performance. From the main menu, select a replay and explore a suite of tabs packed with data and visualizations tailored to Rocket League. This tool acts like a microscope for your gameplay, zooming in on every detail—from match outcomes to individual player movements—giving you the insights needed to level up.</p>
+            <p>Start with the <strong>Match Overview</strong> tab, which lists team rosters, final scores, and a performance radar chart plotting metrics like shots, saves, and boost efficiency. This chart offers a snapshot of who dominated the game and where you stood out—or fell short. Next, <strong>Outlier Detection</strong> flags players with standout stats, positive or negative—like someone hogging boost or struggling with turnovers—guiding you to dig deeper into tabs like Interactions or Boost. The <strong>Goals</strong> tab maps every goal’s location, paired with a timeline and Buildup Map showing assists and pre-goal plays, plus a Kickoff Map tracking post-kickoff ball movement. This helps you see if goals stem from defensive gaps or offensive brilliance.</p>
+            <p>In <strong>Interactions</strong>, you’ll find data on passes, giveaways, 50/50s, dribbles, and demos, with filters to isolate specific players. This tab reveals teamwork dynamics—whether you’re syncing with teammates or losing possession too often. The <strong>Boost</strong> tab dives into <strong>boost management</strong>, mapping pickups and detailing team control, average boost levels, and efficiency across field zones. For example, if you’re always low on boost in the offensive third, it’s a cue to adjust your habits. <strong>Movement</strong> brings <strong>heatmaps</strong>—customizable in resolution or viewable in 3D—alongside path maps and stats like time on ball, showing where you roam and if you’re overcommitting to certain areas.</p>
+            <p><strong>Time Series</strong> and <strong>Playthrough</strong> track momentum and rotations over time, with Playthrough offering 2D or 3D views of player movement relative to the ball—perfect for refining positioning. <strong>Correlations</strong> links stats like boost use to distance traveled, uncovering cause-and-effect relationships in your playstyle. Finally, <strong>Teams</strong> compares squad performance, from supersonic speed to passing accuracy, giving coaches a clear view of team strengths and weaknesses.</p>
+            <div style="display: flex; width: 100%; justify-content: center; flex-flow: column;">
+                <img src="img/CARL2_Boost_Control.png" alt="CARL2 Team Boost Control Map" style="width: min(90%, 600px); margin-bottom: 15px;" />
+                <img src="img/CARL2_Boost_Pickups.png" alt="CARL2 Player Boost Pickup Maps" style="width: min(90%, 600px); margin-bottom: 15px;" />
+                <img src="img/CARL2_interceptions.png" alt="CARL2 Interceptions Map" style="width: min(90%, 600px); margin-bottom: 15px;" />
+                <img src="img/CARL2_Stats_Zones_Visualization.png" alt="CARL2 Stats Visualized by field Zones" style="width: min(90%, 600px); margin-bottom: 35px;" />
+            </div>
+            <div class="button-group">
+                <a href="https://lndrlndr.github.io/CARL2_App/" target="_blank" class="waves-effect waves-light btn download-btn">
+                    <div>Download CARL2</div>
+                </a>
+                <a href="https://discord.gg/y4xwPpCyWn" target="_blank" class="waves-effect waves-light btn discord-btn" rel="nofollow">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="discord-svg" viewBox="0 0 16 16">
+                        <path d="M13.545 2.907a13.227 13.227 0 0 0-3.257-1.011.05.05 0 0 0-.052.025c-.141.25-.297.577-.406.833a12.19 12.19 0 0 0-3.658 0 8.258 8.258 0 0 0-.412-.833.051.051 0 0 0-.052-.025c-1.125.194-2.22.534-3.257 1.011a.041.041 0 0 0-.021.018C.356 6.024-.213 9.047.066 12.032c.001.014.01.028.021.037a13.276 13.276 0 0 0 3.995 2.02.05.05 0 0 0 .056-.019c.308-.42.582-.863.818-1.329a.05.05 0 0 0-.01-.059.051.051 0 0 0-.018-.011 8.875 8.875 0 0 1-1.248-.595.05.05 0 0 1-.02-.066.051.051 0 0 1 .015-.019c.084-.063.168-.129.248-.195a.05.05 0 0 1 .051-.007c2.619 1.196 5.454 1.196 8.041 0a.052.052 0 0 1 .053.007c.08.066.164.132.248.195a.051.051 0 0 1-.004.085 8.254 8.254 0 0 1-1.249.594.05.05 0 0 0-.03.03.052.052 0 0 0 .003.041c.24.465.515.909.817 1.329a.05.05 0 0 0 .056.019 13.235 13.235 0 0 0 4.001-2.02.049.049 0 0 0 .021-.037c.334-3.451-.559-6.449-2.366-9.106a.034.034 0 0 0-.02-.019Zm-8.198 7.307c-.789 0-1.438-.724-1.438-1.612 0-.889.637-1.613 1.438-1.613.807 0 1.45.73 1.438 1.613 0 .888-.637 1.612-1.438 1.612Zm5.316 0c-.788 0-1.438-.724-1.438-1.612 0-.889.637-1.613 1.438-1.613.807 0 1.451.73 1.438 1.613 0 .888-.631 1.612-1.438 1.612Z" />
+                    </svg>
+                    <div>Join the Discord</div>
+                </a>
+            </div>
+        </section>
 
-        <p>CARL has a wide range of features that can be useful in different contexts. Here are some of the main ways
-            that CARL can be used:</p>
+        <section>
+            <h2>Analyze Series of Games: See the Bigger Picture</h2>
+            <p>For a broader perspective, CARL2’s <strong>Analyze Series of Games</strong> feature lets you load multiple replays and track trends across matches. Select your files, hit analyze, and watch as the tool compiles <strong>player stats</strong> and visualizations into a cohesive narrative of your Rocket League journey. This isn’t just about one game—it’s about understanding how you and your team evolve over time.</p>
+            <p>The <strong>Series Overview</strong> kicks things off with kill/death maps, pass maps, giveaway maps—all viewable in 3D—and goal maps detailing shot locations and speeds. These visuals show if your team consistently loses possession in midfield or if opponents exploit specific zones. <strong>Player Connections</strong> graphs teamwork, charting passes between teammates and to opponents, highlighting strong partnerships or frequent miscommunications. <strong>Outlier Detection</strong> flags inconsistent stats—like a player’s speed spiking one game and dropping the next—linking to <strong>Evolution</strong>, which breaks down trends game-by-game, such as boost usage or aerial frequency.</p>
+            <p><strong>Series Averages</strong> provides per-player averages, backed by <strong>heatmaps</strong>, boost pickup maps, radar charts, and zone-specific data. You can compare who dominates boost pads or excels in aerial plays, giving coaches ammo to tailor training. <strong>Correlations</strong> uncovers hidden links—like more ball touches leading to better passing—while <strong>Win vs. Loss Analysis</strong> contrasts your performance in victories and defeats, revealing habits like overextending in losses. <strong>Evolution</strong> tracks long-term changes, showing if your boost consistency is trending up or down, offering a clear path to improvement.</p>
+            <div style="display: flex; width: 100%; justify-content: center; flex-flow: column;">
+                <img src="img/CARL2_WinLoss_Analysis.png" alt="CARL2 Win vs Loss Analysis" style="width: min(90%, 600px); margin-bottom: 15px;" />
+                <img src="img/CARL2_Player_Connection_Graphs.png" alt="CARL2 Player Passes Connection Graphs" style="width: min(90%, 600px); margin-bottom: 15px;" />
+                <img src="img/CARL2_Radar_Chart.png" alt="CARL2 Quick Stats overviews with Radar Charts" style="width: min(90%, 600px); margin-bottom: 15px;" />
+                <img src="img/CARL2_Trend_Analysis.png" alt="CARL2 Find consistency with Trend Analysis" style="width: min(90%, 600px); margin-bottom: 15px;" />
+                <img src="img/CARL2_Series_PassMaps.png" alt="CARL2 Series Passes Overview Map" style="width: min(90%, 600px); margin-bottom: 35px;" />
+            </div>
+            <div class="button-group">
+                <a href="https://lndrlndr.github.io/CARL2_App/" target="_blank" class="waves-effect waves-light btn download-btn">
+                    <div>Download CARL2</div>
+                </a>
+                <a href="https://discord.gg/y4xwPpCyWn" target="_blank" class="waves-effect waves-light btn discord-btn" rel="nofollow">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="discord-svg" viewBox="0 0 16 16">
+                        <path d="M13.545 2.907a13.227 13.227 0 0 0-3.257-1.011.05.05 0 0 0-.052.025c-.141.25-.297.577-.406.833a12.19 12.19 0 0 0-3.658 0 8.258 8.258 0 0 0-.412-.833.051.051 0 0 0-.052-.025c-1.125.194-2.22.534-3.257 1.011a.041.041 0 0 0-.021.018C.356 6.024-.213 9.047.066 12.032c.001.014.01.028.021.037a13.276 13.276 0 0 0 3.995 2.02.05.05 0 0 0 .056-.019c.308-.42.582-.863.818-1.329a.05.05 0 0 0-.01-.059.051.051 0 0 0-.018-.011 8.875 8.875 0 0 1-1.248-.595.05.05 0 0 1-.02-.066.051.051 0 0 1 .015-.019c.084-.063.168-.129.248-.195a.05.05 0 0 1 .051-.007c2.619 1.196 5.454 1.196 8.041 0a.052.052 0 0 1 .053.007c.08.066.164.132.248.195a.051.051 0 0 1-.004.085 8.254 8.254 0 0 1-1.249.594.05.05 0 0 0-.03.03.052.052 0 0 0 .003.041c.24.465.515.909.817 1.329a.05.05 0 0 0 .056.019 13.235 13.235 0 0 0 4.001-2.02.049.049 0 0 0 .021-.037c.334-3.451-.559-6.449-2.366-9.106a.034.034 0 0 0-.02-.019Zm-8.198 7.307c-.789 0-1.438-.724-1.438-1.612 0-.889.637-1.613 1.438-1.613.807 0 1.45.73 1.438 1.613 0 .888-.637 1.612-1.438 1.612Zm5.316 0c-.788 0-1.438-.724-1.438-1.612 0-.889.637-1.613 1.438-1.613.807 0 1.451.73 1.438 1.613 0 .888-.631 1.612-1.438 1.612Z" />
+                    </svg>
+                    <div>Join the Discord</div>
+                </a>
+            </div>
+        </section>
 
-        <h3>Casting</h3>
-        <p>If you're a caster or analyst, CARL can be a powerful tool for real-time player performance tracking. With
-            CARL, you can access detailed player and team stats, such as shot accuracy, boost usage, and ball touches,
-            to provide insightful commentary and analysis during matches.</p>
+        <section>
+            <h2>Live Modes: Stay Ahead in Real Time</h2>
+            <p>CARL2’s <strong>live modes</strong> bring <strong>live game tracking</strong> to Rocket League, offering real-time tools tailored for players, coaches, casters, and admins. Whether you’re dissecting a replay as it plays or monitoring an ongoing match, CARL2 syncs with the game to deliver instant data, keeping you immersed in the action with insights at your fingertips.</p>
+            <p><strong>Live Replay Analysis</strong> lets you launch a replay in Rocket League and control it within CARL2—rewind, pause, or fast-forward—while a <strong>minimap</strong>, boost/speed meters, and throttle data update in real time. The minimap shows player positions, boost levels, and connection lines to visualize spacing, with options to tweak settings like adding height indicators. It’s ideal for players reviewing a missed shot or a clutch play right after it happens. <strong>Observer/Referee/Match Admin Mode</strong> tracks live games with a player list (including ping), game events, and a customizable layout, perfect for admins ensuring fair play in tournaments by monitoring connections and key actions.</p>
+            <p><strong>Coach Mode</strong> elevates practice sessions with advanced stats, team data, and chat history. Coaches can toggle stats—like boost efficiency or positioning—and reorder them to focus on priorities, delivering real-time feedback mid-game. If a player’s boost is consistently low, the coach can suggest rotation tweaks on the spot. <strong>Caster Mode</strong> optimizes the layout for commentary, spotlighting stats like boost control or supersonic speed to engage viewers. Casters can highlight a player’s aerial streak or boost dominance, adding depth to broadcasts. All spectated games save automatically for later <strong>replay analysis</strong>, ensuring no moment is lost.</p>
+            <div style="display: flex; width: 100%; justify-content: center; flex-flow: column;">
+                <img src="img/CARL2_Live_Replay_Analysis.png" alt="CARL2 Live Replay Analysis" style="width: min(90%, 600px); margin-bottom: 15px;" />
+                <img src="img/CARL2_Caster_View.png" alt="CARL2 Real Time Stats with the Caster View" style="width: min(90%, 600px); margin-bottom: 15px;" />
+                <img src="img/CARL2_Coach_View.png" alt="CARL2 Real Time Game Insights with the Coach View" style="width: min(90%, 600px); margin-bottom: 35px;" />
+            </div>
+            <div class="button-group">
+                <a href="https://lndrlndr.github.io/CARL2_App/" target="_blank" class="waves-effect waves-light btn download-btn">
+                    <div>Download CARL2</div>
+                </a>
+                <a href="https://discord.gg/y4xwPpCyWn" target="_blank" class="waves-effect waves-light btn discord-btn" rel="nofollow">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="discord-svg" viewBox="0 0 16 16">
+                        <path d="M13.545 2.907a13.227 13.227 0 0 0-3.257-1.011.05.05 0 0 0-.052.025c-.141.25-.297.577-.406.833a12.19 12.19 0 0 0-3.658 0 8.258 8.258 0 0 0-.412-.833.051.051 0 0 0-.052-.025c-1.125.194-2.22.534-3.257 1.011a.041.041 0 0 0-.021.018C.356 6.024-.213 9.047.066 12.032c.001.014.01.028.021.037a13.276 13.276 0 0 0 3.995 2.02.05.05 0 0 0 .056-.019c.308-.42.582-.863.818-1.329a.05.05 0 0 0-.01-.059.051.051 0 0 0-.018-.011 8.875 8.875 0 0 1-1.248-.595.05.05 0 0 1-.02-.066.051.051 0 0 1 .015-.019c.084-.063.168-.129.248-.195a.05.05 0 0 1 .051-.007c2.619 1.196 5.454 1.196 8.041 0a.052.052 0 0 1 .053.007c.08.066.164.132.248.195a.051.051 0 0 1-.004.085 8.254 8.254 0 0 1-1.249.594.05.05 0 0 0-.03.03.052.052 0 0 0 .003.041c.24.465.515.909.817 1.329a.05.05 0 0 0 .056.019 13.235 13.235 0 0 0 4.001-2.02.049.049 0 0 0 .021-.037c.334-3.451-.559-6.449-2.366-9.106a.034.034 0 0 0-.02-.019Zm-8.198 7.307c-.789 0-1.438-.724-1.438-1.612 0-.889.637-1.613 1.438-1.613.807 0 1.45.73 1.438 1.613 0 .888-.637 1.612-1.438 1.612Zm5.316 0c-.788 0-1.438-.724-1.438-1.612 0-.889.637-1.613 1.438-1.613.807 0 1.451.73 1.438 1.613 0 .888-.631 1.612-1.438 1.612Z" />
+                    </svg>
+                    <div>Join the Discord</div>
+                </a>
+            </div>
+        </section>
 
-        <h3>Coaching</h3>
-        <p>If you're a coach or player looking to improve your gameplay, CARL can be a valuable resource for identifying
-            areas of improvement. With CARL, you can review your replays and analyze your gameplay to identify patterns
-            and mistakes. For example, you can use CARL's heatmaps to see where you tend to spend the most time on the
-            field, or its boost usage charts to identify times when you're wasting valuable boost.</p>
-        <p>In addition, CARL can help you with rotation, boost management, and positioning by providing you with data
-            and visualizations that show you where you and your teammates should be on the field at any given time.</p>
+        <section>
+            <h2>Download CARL2: Your Free Rocket League Advantage</h2>
+            <p>Getting started with CARL2 is straightforward and quick. First, ensure Bakkesmod is installed—it’s a key companion for syncing CARL2 with Rocket League. Then, head to <a href="https://lndrlndr.github.io/CARL2_App/" target="_blank">our official site</a> to download the app. After installing, create an account using your email and password, confirm via the emailed link, and you’re set to dive into <strong>replay analysis</strong>, <strong>live tracking</strong>, and more. Join our Discord community for support, updates, and to connect with fellow Rocket League fans—it’s the hub for feature requests and troubleshooting.</p>
+            <p>Once installed, CARL2 greets you with an intuitive interface. The main menu is your launchpad, guiding you to process replays, analyze games, or jump into live modes. The design is clean and responsive, letting you switch between tabs and explore visualizations like heatmaps or boost stats effortlessly. For new users, the Quickstart Guide video below walks you through every step, ensuring you’re up and running fast. Whether you’re a solo player or a team coach, CARL2 makes advanced analysis accessible—and free.</p>
+            <div class="button-group">
+                <a href="https://lndrlndr.github.io/CARL2_App/" target="_blank" class="waves-effect waves-light btn download-btn">
+                    <div>Download CARL2</div>
+                </a>
+                <a href="https://discord.gg/y4xwPpCyWn" target="_blank" class="waves-effect waves-light btn discord-btn" rel="nofollow">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="discord-svg" viewBox="0 0 16 16">
+                        <path d="M13.545 2.907a13.227 13.227 0 0 0-3.257-1.011.05.05 0 0 0-.052.025c-.141.25-.297.577-.406.833a12.19 12.19 0 0 0-3.658 0 8.258 8.258 0 0 0-.412-.833.051.051 0 0 0-.052-.025c-1.125.194-2.22.534-3.257 1.011a.041.041 0 0 0-.021.018C.356 6.024-.213 9.047.066 12.032c.001.014.01.028.021.037a13.276 13.276 0 0 0 3.995 2.02.05.05 0 0 0 .056-.019c.308-.42.582-.863.818-1.329a.05.05 0 0 0-.01-.059.051.051 0 0 0-.018-.011 8.875 8.875 0 0 1-1.248-.595.05.05 0 0 1-.02-.066.051.051 0 0 1 .015-.019c.084-.063.168-.129.248-.195a.05.05 0 0 1 .051-.007c2.619 1.196 5.454 1.196 8.041 0a.052.052 0 0 1 .053.007c.08.066.164.132.248.195a.051.051 0 0 1-.004.085 8.254 8.254 0 0 1-1.249.594.05.05 0 0 0-.03.03.052.052 0 0 0 .003.041c.24.465.515.909.817 1.329a.05.05 0 0 0 .056.019 13.235 13.235 0 0 0 4.001-2.02.049.049 0 0 0 .021-.037c.334-3.451-.559-6.449-2.366-9.106a.034.034 0 0 0-.02-.019Zm-8.198 7.307c-.789 0-1.438-.724-1.438-1.612 0-.889.637-1.613 1.438-1.613.807 0 1.45.73 1.438 1.613 0 .888-.637 1.612-1.438 1.612Zm5.316 0c-.788 0-1.438-.724-1.438-1.612 0-.889.637-1.613 1.438-1.613.807 0 1.451.73 1.438 1.613 0 .888-.631 1.612-1.438 1.612Z" />
+                    </svg>
+                    <div>Join the Discord</div>
+                </a>
+            </div>
+        </section>
 
-        <h3>Observer</h3>
-        <p>If you're an observer or tournament organizer, CARL can be a valuable tool for monitoring player performance
-            and gameplay. With CARL, you can monitor player ping and access the player spectate shortcuts information,
-            allowing you to ensure that all players have a fair and smooth playing experience.</p>
-
-        <h3>Research</h3>
-        <p>If you're a data enthusiast or researcher, CARL can provide a wealth of data and insights about the game of
-            Rocket League. By analyzing replays and player stats, you can uncover trends and
-            patterns in gameplay, identify winning strategies, and gain a deeper understanding of the game and its
-            mechanics.</p>
-
-        <h2>How to Download CARL?</h2>
-
-        <div class="video_box">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/HOqBbIn-qdM"
-                title="YouTube video player" frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowfullscreen></iframe>
-            <a href="https://discord.gg/y4xwPpCyWn" target="_blank" class="waves-effect waves-light btn discord-btn"
-                rel="nofollow">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="discord-svg" viewBox="0 0 16 16">
-                    <path
-                        d="M13.545 2.907a13.227 13.227 0 0 0-3.257-1.011.05.05 0 0 0-.052.025c-.141.25-.297.577-.406.833a12.19 12.19 0 0 0-3.658 0 8.258 8.258 0 0 0-.412-.833.051.051 0 0 0-.052-.025c-1.125.194-2.22.534-3.257 1.011a.041.041 0 0 0-.021.018C.356 6.024-.213 9.047.066 12.032c.001.014.01.028.021.037a13.276 13.276 0 0 0 3.995 2.02.05.05 0 0 0 .056-.019c.308-.42.582-.863.818-1.329a.05.05 0 0 0-.01-.059.051.051 0 0 0-.018-.011 8.875 8.875 0 0 1-1.248-.595.05.05 0 0 1-.02-.066.051.051 0 0 1 .015-.019c.084-.063.168-.129.248-.195a.05.05 0 0 1 .051-.007c2.619 1.196 5.454 1.196 8.041 0a.052.052 0 0 1 .053.007c.08.066.164.132.248.195a.051.051 0 0 1-.004.085 8.254 8.254 0 0 1-1.249.594.05.05 0 0 0-.03.03.052.052 0 0 0 .003.041c.24.465.515.909.817 1.329a.05.05 0 0 0 .056.019 13.235 13.235 0 0 0 4.001-2.02.049.049 0 0 0 .021-.037c.334-3.451-.559-6.449-2.366-9.106a.034.034 0 0 0-.02-.019Zm-8.198 7.307c-.789 0-1.438-.724-1.438-1.612 0-.889.637-1.613 1.438-1.613.807 0 1.45.73 1.438 1.613 0 .888-.637 1.612-1.438 1.612Zm5.316 0c-.788 0-1.438-.724-1.438-1.612 0-.889.637-1.613 1.438-1.613.807 0 1.451.73 1.438 1.613 0 .888-.631 1.612-1.438 1.612Z" />
-                </svg>
-                <div>Join the Discord</div>
-            </a>
-        </div>
-
-        <p>Installing CARL is easy and completely free. To download CARL, simply join the official Discord server by
-            following this link: <a href="https://discord.gg/y4xwPpCyWn" target="_blank"
-                rel="nofollow">https://discord.gg/y4xwPpCyWn</a>.
-        </p>
-        <p>Once you're on the server, you can find the download file for CARL in the #downloads channel.</p>
-        <p>In addition to the downloads channel, there is also a #tutorials channel that contains helpful resources on
-            how to use CARL to its fullest potential. These tutorials cover everything from basic installation and setup
-            to advanced analysis techniques, so be sure to check them out if you're new to the tool.</p>
-
-        <h2>The Power of Play-Style Charts in Rocket League Analysis</h2>
-
-        <div class="video_box">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/juMrMvpKjCQ"
-                title="YouTube video player" frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowfullscreen></iframe>
-            <a href="https://discord.gg/y4xwPpCyWn" target="_blank" class="waves-effect waves-light btn discord-btn"
-                rel="nofollow">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="discord-svg" viewBox="0 0 16 16">
-                    <path
-                        d="M13.545 2.907a13.227 13.227 0 0 0-3.257-1.011.05.05 0 0 0-.052.025c-.141.25-.297.577-.406.833a12.19 12.19 0 0 0-3.658 0 8.258 8.258 0 0 0-.412-.833.051.051 0 0 0-.052-.025c-1.125.194-2.22.534-3.257 1.011a.041.041 0 0 0-.021.018C.356 6.024-.213 9.047.066 12.032c.001.014.01.028.021.037a13.276 13.276 0 0 0 3.995 2.02.05.05 0 0 0 .056-.019c.308-.42.582-.863.818-1.329a.05.05 0 0 0-.01-.059.051.051 0 0 0-.018-.011 8.875 8.875 0 0 1-1.248-.595.05.05 0 0 1-.02-.066.051.051 0 0 1 .015-.019c.084-.063.168-.129.248-.195a.05.05 0 0 1 .051-.007c2.619 1.196 5.454 1.196 8.041 0a.052.052 0 0 1 .053.007c.08.066.164.132.248.195a.051.051 0 0 1-.004.085 8.254 8.254 0 0 1-1.249.594.05.05 0 0 0-.03.03.052.052 0 0 0 .003.041c.24.465.515.909.817 1.329a.05.05 0 0 0 .056.019 13.235 13.235 0 0 0 4.001-2.02.049.049 0 0 0 .021-.037c.334-3.451-.559-6.449-2.366-9.106a.034.034 0 0 0-.02-.019Zm-8.198 7.307c-.789 0-1.438-.724-1.438-1.612 0-.889.637-1.613 1.438-1.613.807 0 1.45.73 1.438 1.613 0 .888-.637 1.612-1.438 1.612Zm5.316 0c-.788 0-1.438-.724-1.438-1.612 0-.889.637-1.613 1.438-1.613.807 0 1.451.73 1.438 1.613 0 .888-.631 1.612-1.438 1.612Z" />
-                </svg>
-                <div>Join the Discord</div>
-            </a>
-        </div>
-        <p>When it comes to improving gameplay in Rocket League, analyzing your play style and positioning is crucial.
-            This is where play-style charts come in - providing a wealth of data about a player's positioning, play
-            style, and team dynamics throughout a match. CARL, the Coaching Analysis tool for Rocket League, is one of
-            the most powerful tools available for accessing and analyzing play-style charts.</p>
-
-        <h3>Closest to Ball and Furthest to Ball</h3>
-        <p>One of the key pieces of information provided by play-style charts is a player's proximity to the ball
-            throughout a match. The charts show data about how often a player was closest to the ball, as well as how
-            often they were furthest from it. This information can provide valuable insights into a player's play style,
-            indicating whether they tend to play more aggressively or defensively.</p>
-        <p>By analyzing this information, players can adjust their play style to be more effective in their designated
-            role within a team. For example, if a player is consistently furthest from the ball, they may need to work
-            on being more aggressive and positioning themselves closer to the ball to be more effective in offense.</p>
-
-        <h3>Time as First and Last Man</h3>
-        <p>The play-style charts also show how much time a player spends as the first man or last man on their team.
-            This information is essential for optimizing rotation and ensuring that players are playing in the most
-            effective positions on the field. For example, if a player spends too much time as the last man, they may be
-            missing opportunities to push up and contribute to the team's offense.</p>
-
-        <h3>Time Spent in Offense and Defense</h3>
-        <p>Another important piece of information provided by play-style charts is the amount of time a player spends in
-            offense versus defense. This information can be used to identify imbalances in a team's play style and make
-            adjustments to improve overall team performance. For example, if a team is spending too much time in
-            defense, they may need to adjust their positioning and play style to be more aggressive and spend more time
-            in offense.</p>
-
-        <h2>Replay Analysis</h2>
-        <p>With CARL, you can review your replays and analyze your gameplay to identify patterns and mistakes. CARL's
-            replay analysis features include the ability to watch replays at different speeds, view player stats, and
-            track specific events during the match.</p>
-
-        <h2>Positioning Analysis</h2>
-        <p>Positioning is crucial in Rocket League, and CARL can help you improve your positioning by providing data and
-            visualizations that show you where you and your teammates should be on the field at any given time.</p>
-
-        <h2>Conclusion</h2>
-        <p>Overall, CARL is a powerful tool for anyone looking to improve their gameplay, analyze Rocket League matches,
-            or gain a deeper understanding of the game. Best of all, it's completely free to use, so why not give it a
-            try and see how it can help you?</p>
-        <div class="video_box">
-            <a href="https://discord.gg/y4xwPpCyWn" target="_blank" class="waves-effect waves-light btn discord-btn"
-                rel="nofollow">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="discord-svg" viewBox="0 0 16 16">
-                    <path
-                        d="M13.545 2.907a13.227 13.227 0 0 0-3.257-1.011.05.05 0 0 0-.052.025c-.141.25-.297.577-.406.833a12.19 12.19 0 0 0-3.658 0 8.258 8.258 0 0 0-.412-.833.051.051 0 0 0-.052-.025c-1.125.194-2.22.534-3.257 1.011a.041.041 0 0 0-.021.018C.356 6.024-.213 9.047.066 12.032c.001.014.01.028.021.037a13.276 13.276 0 0 0 3.995 2.02.05.05 0 0 0 .056-.019c.308-.42.582-.863.818-1.329a.05.05 0 0 0-.01-.059.051.051 0 0 0-.018-.011 8.875 8.875 0 0 1-1.248-.595.05.05 0 0 1-.02-.066.051.051 0 0 1 .015-.019c.084-.063.168-.129.248-.195a.05.05 0 0 1 .051-.007c2.619 1.196 5.454 1.196 8.041 0a.052.052 0 0 1 .053.007c.08.066.164.132.248.195a.051.051 0 0 1-.004.085 8.254 8.254 0 0 1-1.249.594.05.05 0 0 0-.03.03.052.052 0 0 0 .003.041c.24.465.515.909.817 1.329a.05.05 0 0 0 .056.019 13.235 13.235 0 0 0 4.001-2.02.049.049 0 0 0 .021-.037c.334-3.451-.559-6.449-2.366-9.106a.034.034 0 0 0-.02-.019Zm-8.198 7.307c-.789 0-1.438-.724-1.438-1.612 0-.889.637-1.613 1.438-1.613.807 0 1.45.73 1.438 1.613 0 .888-.637 1.612-1.438 1.612Zm5.316 0c-.788 0-1.438-.724-1.438-1.612 0-.889.637-1.613 1.438-1.613.807 0 1.451.73 1.438 1.613 0 .888-.631 1.612-1.438 1.612Z" />
-                </svg>
-                <div>Join the Discord</div>
-            </a>
-        </div>
-
+        <section>
+            <h2>Getting Started with CARL2</h2>
+            <p>New to CARL2? The Quickstart Guide video below walks you through setup, replay processing, and live analysis, ensuring you’re analyzing like a pro in no time. It covers everything from installing the app to exploring your first <strong>heatmaps</strong> and stats, breaking down each step so you can start unlocking your Rocket League potential right away. Dive in, download CARL2, and take your gameplay to the next level today.</p>
+            <p>The guide starts with downloading and installing CARL2, then moves into processing your first replay—showing you how to load a file and extract stats in seconds. It walks you through navigating the interface, selecting tabs for single-game or series analysis, and using live modes to track matches as they happen. For extra help, the Discord community offers written resources and real-time support, ensuring you’re never stuck. Whether you’re a player aiming to climb ranks or a coach refining team play, CARL2’s tools are designed to be approachable yet powerful.</p>
+            <div class="video_box">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/yoD3iFQQEwE"
+                    title="CARL2 Quickstart Guide" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen></iframe>
+            </div>
+            <div class="button-group">
+                <a href="https://lndrlndr.github.io/CARL2_App/" target="_blank" class="waves-effect waves-light btn download-btn">
+                    <div>Download CARL2 Today</div>
+                </a>
+            </div>
+        </section>
     </main>
 
     <div style="height: 35px;"></div>
@@ -467,28 +197,22 @@
         <i class="material-icons">arrow_upward</i>
     </a>
 </body>
+
 <script>
     const scrollToTopButton = document.querySelector('#scroll-to-top');
-
     window.addEventListener('scroll', () => {
         const currentScroll = window.pageYOffset;
         const main = document.querySelector('main');
         const mainPosition = main.offsetTop;
-
         if (currentScroll > mainPosition) {
             scrollToTopButton.classList.add('show');
         } else {
             scrollToTopButton.classList.remove('show');
         }
     });
-
     scrollToTopButton.addEventListener('click', () => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     });
-
 </script>
 
 </html>
